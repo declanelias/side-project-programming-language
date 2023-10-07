@@ -1,0 +1,10 @@
+s_expression:       declaration |
+                    "(" s_expression "." s_expression ")" |
+                    list
+
+list:               "(" s_expression < s_expression > ")"
+declaration:        letter atom_part
+atom_part:          empty / letter atom_part / number atom_part
+letter:             "a" / "b" / ... / "z"
+number:             "0" / "1" / ... / "9"
+empty:              " "
