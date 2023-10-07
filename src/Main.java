@@ -1,3 +1,5 @@
+import Parser.AST.ASTConstructor;
+import Parser.AST.Node.ProgramNode;
 import Scanner.*;
 import Token.Token;
 
@@ -9,8 +11,6 @@ import java.util.List;
 
 public class Main {
 
-
-
     public static void main(String[] args) {
         startREPL();
     }
@@ -19,9 +19,9 @@ public class Main {
         Scanner scanner = new Scanner(code);
         List<Token> tokens = scanner.getTokens();
 
-        for (Token token : tokens) {
-            System.out.println("Token: " + token);
-        }
+        ASTConstructor astConstructor = new ASTConstructor(tokens);
+        ProgramNode pn = astConstructor.getAst();
+        System.out.println(pn);
     }
 
 

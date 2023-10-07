@@ -1,9 +1,12 @@
 package Token;
 
+/**
+ * Class to store data for each token
+ */
 public class Token {
 
     final TokenType tokenType;
-    final String lexeme;
+    final String lexeme; // individual part of the code
     final int lineNum;
     final Object varValue;
 
@@ -20,5 +23,17 @@ public class Token {
                 ",\n\tlexeme = " + lexeme +
                 ",\n\tlineNum = " + lineNum +
                 ",\n\tvarValue = " + varValue;
+    }
+
+    public TokenType getTokenType() {
+        return tokenType;
+    }
+
+    public Object getVarValue() {
+        return varValue;
+    }
+
+    public String getLexeme() {
+        return lexeme;
     }
 }
