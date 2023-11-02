@@ -1,10 +1,10 @@
-package Parser.AST.Node;
+package Language.Types;
 
-public final class SymbolNode extends Node{
+public class SymbolType extends Type{
 
     private final String name;
 
-    public SymbolNode(String name) {
+    public SymbolType(String name) {
         this.name = name;
     }
 
@@ -14,8 +14,9 @@ public final class SymbolNode extends Node{
 
     @Override
     public String toString() {
-        return "SymbolNode{" +
+        return "SymbolType{" +
                 "name='" + name + '\'' +
+                ", " + super.toString() +
                 '}';
     }
 }
