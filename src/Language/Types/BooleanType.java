@@ -14,8 +14,6 @@ public class BooleanType extends Type{
 
     @Override
     public String toString() {
-        return "BooleanType{" +
-                "value=" + value +
-                '}';
+        return Boolean.toString(value).toUpperCase();
     }
 }

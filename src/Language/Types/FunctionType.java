@@ -5,26 +5,35 @@ import Language.Environment;
 import java.util.List;
 import java.util.function.Function;
 
-public class FunctionType extends Type{
+public abstract class FunctionType extends Type {
 
-    private Type ast;
-    private Environment environment;
-    private ListType params;
-    private Function<List<Type>, Type> function;
+    public abstract Type apply(ListType list);
 
-    public FunctionType(Function<List<Type>, Type> function){
-        this.function = function;
+    @Override
+    public String toString() {
+        return "#<function>";
     }
 
+    //    private ListType ast;
+//    private Environment environment;
+//    private Function<List<Type>, Type> function;
 
-    public Type apply(List<Type> t) {
-        return function.apply(t);
-    }
+//    public FunctionType(Function<List<Type>, Type> function){
+//        this.function = function;
+//    }
 
-    public FunctionType(Type ast, Environment environment, ListType params) {
-        this.ast = ast;
-        this.environment = environment;
-        this.params = params;
-    }
+//    public Type apply(List<Type> t) {
+//        return function.apply(t);
+//    }
+
+//    public FunctionType(ListType ast, Environment environment) {
+//        this.ast = ast;
+//        this.environment = environment;
+//    }
+
+//    private void createFunction() {
+//        Environment funcEnv = new Environment(environment);
+////        funcEnv.set();
+//    }
 
 }

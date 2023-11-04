@@ -21,18 +21,13 @@ public class ListType extends Type {
         return size;
     }
 
+    public ListType restOfList() {
+        return new ListType(list.subList(1, size));
+    }
+
 
     @Override
     public String toString() {
-
-        StringBuilder sb = new StringBuilder();
-        for (Type type : list) {
-            sb.append(type.toString());
-        }
-
-
-        return "ListType{" +
-                "\t" + sb +
-                '}';
+        return list.toString();
     }
 }

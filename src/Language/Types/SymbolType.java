@@ -14,9 +14,6 @@ public class SymbolType extends Type{
 
     @Override
     public String toString() {
-        return "SymbolType{" +
-                "name='" + name + '\'' +
-                ", " + super.toString() +
-                '}';
+        return name;
     }
 }

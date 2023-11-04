@@ -1,5 +1,7 @@
 package Language;
 
+import Language.Types.ErrorType;
+import Language.Types.ListType;
 import Language.Types.SymbolType;
 import Language.Types.Type;
 
@@ -8,11 +10,29 @@ import java.util.Map;
 
 public final class Environment {
     private final Environment outer;
-    private final Map<String, Type> symbolMap;
+    private final Map<String, Type> symbolMap = new HashMap<>();
 
     public Environment(Environment outer) {
         this.outer = outer;
-        symbolMap = new HashMap<>();
+    }
+
+    public Environment(Environment outer, ListType params, ListType args) {
+        this.outer = outer;
+
+        bindParamsToArgs(params, args);
+
+    }
+
+    private void bindParamsToArgs(ListType params, ListType args) {
+        if (params.size() != args.size()) {
+            // TODO edit this to error
+            System.err.println("wrong number of params");
+        }
+
+        for (int i = 0; i < params.size(); i++) {
+            // TODO error
+            set(((SymbolType) params.get(i)).getName(), args.get(i));
+        }
     }
 
     public void set(String varName, Type var) {
