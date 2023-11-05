@@ -1,13 +1,8 @@
-package Language.Types;
-
-import Language.Environment;
-
-import java.util.List;
-import java.util.function.Function;
+package Main.Language.Types;
 
 public abstract class FunctionType extends Type {
 
-    public abstract Type apply(ListType list);
+    public abstract Type apply(ListType list) throws ErrorType;
 
     @Override
     public String toString() {

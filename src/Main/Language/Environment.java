@@ -1,9 +1,9 @@
-package Language;
+package Main.Language;
 
-import Language.Types.ErrorType;
-import Language.Types.ListType;
-import Language.Types.SymbolType;
-import Language.Types.Type;
+import Main.Language.Types.ErrorType;
+import Main.Language.Types.ListType;
+import Main.Language.Types.SymbolType;
+import Main.Language.Types.Type;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,6 +12,9 @@ public final class Environment {
     private final Environment outer;
     private final Map<String, Type> symbolMap = new HashMap<>();
 
+    public Environment() {
+        this.outer = null;
+    }
     public Environment(Environment outer) {
         this.outer = outer;
     }
@@ -49,12 +52,11 @@ public final class Environment {
         }
     }
 
-    public Type get(SymbolType symbol) {
+    public Type get(SymbolType symbol) throws ErrorType {
         Environment environment = find(symbol);
         if (environment == null) {
             // TODO change this to error
-            System.err.println(symbol + "not found");
-            throw new RuntimeException(symbol + "not found");
+            throw new ErrorType(symbol + " not found");
         } else {
             return environment.symbolMap.get(symbol.getName());
         }

@@ -1,4 +1,4 @@
-package Language.Types;
+package Main.Language.Types;
 
 public class StringType extends Type {
 
@@ -11,5 +11,9 @@ public class StringType extends Type {
     @Override
     public String toString() {
         return value;
+    }
+
+    public StringType append(StringType s) {
+        return new StringType(value + s);
     }
 }

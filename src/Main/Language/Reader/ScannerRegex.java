@@ -1,5 +1,5 @@
-package Language.Reader;
-import Language.Token.TokenType;
+package Main.Language.Reader;
+import Main.Language.Token.TokenType;
 
 import java.util.HashMap;
 import java.util.Map;

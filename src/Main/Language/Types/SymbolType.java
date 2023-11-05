@@ -1,4 +1,4 @@
-package Language.Types;
+package Main.Language.Types;
 
 public class SymbolType extends Type{
 

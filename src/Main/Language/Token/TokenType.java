@@ -1,4 +1,4 @@
-package Language.Token;
+package Main.Language.Token;
 
 /**
  * Enum for types of tokens

@@ -1,4 +1,4 @@
-package Language.Types;
+package Main.Language.Types;
 
 public abstract class Type {
 

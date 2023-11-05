@@ -1,6 +1,5 @@
-package Language.Types;
+package Main.Language.Types;
 
-import java.util.Collections;
 import java.util.List;
 
 public class ListType extends Type {

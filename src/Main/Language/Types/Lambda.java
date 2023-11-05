@@ -1,4 +1,4 @@
-package Language.Types;
+package Main.Language.Types;
 
 import java.util.List;
 
