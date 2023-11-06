@@ -1,5 +1,8 @@
 package Main.Language.Types;
 
+/**
+ * Errors for language
+ */
 public class LanguageError extends Throwable{
 
     private final String msg;

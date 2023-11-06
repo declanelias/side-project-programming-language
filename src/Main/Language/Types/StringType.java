@@ -2,6 +2,10 @@ package Main.Language.Types;
 
 import java.util.Objects;
 
+/**
+ * Holds information about strings in language
+ */
+
 public class StringType extends Type {
 
     private final String value;

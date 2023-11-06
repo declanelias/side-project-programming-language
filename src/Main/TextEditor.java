@@ -11,11 +11,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 
+/**
+ * Creates text editor to display code
+ */
 public class TextEditor {
     private JTextArea codeArea = new JTextArea(20, 50);
     private JTextArea outputArea = new JTextArea(10, 50);
     private JFrame frame = new JFrame("Text Editor");
 
+    /**
+     * Set up the UI
+     */
     public void createUI() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -54,6 +60,9 @@ public class TextEditor {
         frame.setVisible(true);
     }
 
+    /**
+     * Opens a selected file and displays it in the text editor
+     */
     private class OpenActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -76,6 +85,9 @@ public class TextEditor {
         }
     }
 
+    /**
+     * Saves text in editor to given file
+     */
     private class SaveActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -93,6 +105,9 @@ public class TextEditor {
         }
     }
 
+    /**
+     * Runs the code and displays it to text editor when run button is clicked
+     */
     private class RunActionListener implements ActionListener {
 
         @Override

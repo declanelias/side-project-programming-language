@@ -2,6 +2,10 @@ package Main.Language.Types;
 
 import java.util.Objects;
 
+/**
+ * Hold information about symbol in language
+ */
+
 public class SymbolType extends Type{
 
     private final String name;

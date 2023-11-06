@@ -2,6 +2,9 @@ package Main.Language.Types;
 
 import java.util.Objects;
 
+/**
+ * holds information about boolean
+ */
 public class BooleanType extends Type{
 
     private final boolean value;

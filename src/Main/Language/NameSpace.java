@@ -4,6 +4,9 @@ import Main.Language.Types.*;
 
 import javax.swing.*;
 
+/**
+ * Creates the base environment with built in functions
+ */
 public class NameSpace {
 
     private final Environment env;
@@ -28,6 +31,11 @@ public class NameSpace {
         return env;
     }
 
+    /**
+     * Creates print function to print to text editor
+     * @param textEditorUsed boolean for text editor use
+     * @param outputArea area for code to be printed to
+     */
     public void addPrintFunction(boolean textEditorUsed, JTextArea outputArea) {
         FunctionType print;
         if (textEditorUsed) {
@@ -56,6 +64,9 @@ public class NameSpace {
         env.set("print", print);
     }
 
+    /**
+     * Adds function to check equality amongst types
+     */
     public void addGeneralFunctions() {
         FunctionType equals = new FunctionType() {
             @Override
@@ -68,6 +79,9 @@ public class NameSpace {
         env.set("==", equals);
     }
 
+    /**
+     * Adds built in functions for number types
+     */
     private void addNumberFunctions () {
 
         FunctionType add = new FunctionType() {
@@ -149,6 +163,9 @@ public class NameSpace {
         env.set(">=", gte);
     }
 
+    /**
+     * Adds built in functions for string types
+     */
     public void addStringFunctions() {
         FunctionType append = new FunctionType() {
             @Override
@@ -163,6 +180,9 @@ public class NameSpace {
 
     }
 
+    /**
+     * Checks if there is an error in the functions
+     */
     private void checkForError(ListType list, int numParams) throws LanguageError {
         if (list.size() > numParams) {
             throw new LanguageError.LanguageFunctionError();

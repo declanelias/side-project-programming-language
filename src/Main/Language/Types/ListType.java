@@ -3,6 +3,9 @@ package Main.Language.Types;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Holds information about ListType in language
+ */
 public class ListType extends Type {
 
     private final List<Type> list;

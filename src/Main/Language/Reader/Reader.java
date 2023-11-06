@@ -26,8 +26,12 @@ public class Reader {
         this.splitRegex = ScannerRegex.getSplitRegex();
     }
 
+    /**
+     * Creates ast by passing itterator on the list of split code to _createAST
+     * @return tokenized ast
+     * @throws LanguageError if parsing error encountered
+     */
     public ListType createAst() throws LanguageError {
-        // TODO take care of newline
         List<String> codeString = List.of(code.split(splitRegex));
         Iterator<String> iter = codeString.iterator();
 
@@ -39,6 +43,12 @@ public class Reader {
         return ast;
     }
 
+    /**
+     * Creates ast by iterating over code tokens and matching it to token type
+     * @param iter iterator over list of split code
+     * @return ListType holding AST
+     * @throws LanguageError if nothing matched or too many parens, throw error
+     */
     private ListType _createAst(Iterator<String> iter) throws LanguageError {
         List<Type> typeList = new ArrayList<>();
         while(iter.hasNext()) {

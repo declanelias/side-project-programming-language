@@ -2,6 +2,9 @@ package Main.Language.Types;
 
 import java.util.Objects;
 
+/**
+ * holds information about a number in language
+ */
 public class NumberType extends Type {
 
     private final double value;
