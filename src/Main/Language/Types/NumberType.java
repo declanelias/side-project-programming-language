@@ -1,5 +1,7 @@
 package Main.Language.Types;
 
+import java.util.Objects;
+
 public class NumberType extends Type {
 
     private final double value;
@@ -33,4 +35,13 @@ public class NumberType extends Type {
     public NumberType divide(NumberType n) {
         return new NumberType(value / n.getValue());
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        NumberType that = (NumberType) o;
+        return Double.compare(value, that.value) == 0;
+    }
+
 }

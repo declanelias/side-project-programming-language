@@ -1,6 +1,7 @@
 package Main.Language.Types;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ListType extends Type {
 
@@ -28,5 +29,13 @@ public class ListType extends Type {
     @Override
     public String toString() {
         return list.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ListType listType = (ListType) o;
+        return size == listType.size && Objects.equals(list, listType.list);
     }
 }

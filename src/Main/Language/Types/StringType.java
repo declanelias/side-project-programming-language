@@ -1,5 +1,7 @@
 package Main.Language.Types;
 
+import java.util.Objects;
+
 public class StringType extends Type {
 
     private final String value;
@@ -15,5 +17,13 @@ public class StringType extends Type {
 
     public StringType append(StringType s) {
         return new StringType(value + s);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StringType that = (StringType) o;
+        return Objects.equals(value, that.value);
     }
 }

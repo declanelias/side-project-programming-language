@@ -1,6 +1,6 @@
 package Main.Language;
 
-import Main.Language.Types.ErrorType;
+import Main.Language.Types.LanguageError;
 import Main.Language.Types.ListType;
 import Main.Language.Types.SymbolType;
 import Main.Language.Types.Type;
@@ -27,13 +27,12 @@ public final class Environment {
     }
 
     private void bindParamsToArgs(ListType params, ListType args) {
-        if (params.size() != args.size()) {
-            // TODO edit this to error
-            System.err.println("wrong number of params");
-        }
+//        if (params.size() != args.size()) {
+//            System.err.println("wrong number of params");
+//            throw new LanguageError("Wrong number of parameters");
+//        }
 
         for (int i = 0; i < params.size(); i++) {
-            // TODO error
             set(((SymbolType) params.get(i)).getName(), args.get(i));
         }
     }
@@ -52,11 +51,11 @@ public final class Environment {
         }
     }
 
-    public Type get(SymbolType symbol) throws ErrorType {
+    public Type get(SymbolType symbol) throws LanguageError {
         Environment environment = find(symbol);
         if (environment == null) {
             // TODO change this to error
-            throw new ErrorType(symbol + " not found");
+            throw new LanguageError(symbol + " not found");
         } else {
             return environment.symbolMap.get(symbol.getName());
         }

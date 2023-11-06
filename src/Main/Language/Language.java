@@ -4,11 +4,6 @@ import Main.Language.Evaluator.Evaluator;
 import Main.Language.Reader.Reader;
 import Main.Language.Types.*;
 
-import javax.swing.*;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 
 public class Language {
     private static Environment env;
@@ -17,7 +12,7 @@ public class Language {
         Language.env = env;
     }
 
-    public static String run(String code) throws ErrorType {
+    public static String run(String code) throws LanguageError {
         Reader reader = new Reader(code);
         ListType ast = reader.createAst();
         Evaluator evaluator = new Evaluator();

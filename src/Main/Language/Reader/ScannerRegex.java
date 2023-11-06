@@ -40,6 +40,11 @@ public class ScannerRegex {
         patternMap.put("\\*", TokenType.SYMBOL);
         patternMap.put("/", TokenType.SYMBOL);
         patternMap.put("%", TokenType.SYMBOL);
+        patternMap.put(">=", TokenType.SYMBOL);
+        patternMap.put("<=", TokenType.SYMBOL);
+        patternMap.put(">", TokenType.SYMBOL);
+        patternMap.put("<", TokenType.SYMBOL);
+        patternMap.put("==", TokenType.SYMBOL);
     }
 
 

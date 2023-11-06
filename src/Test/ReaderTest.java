@@ -1,6 +1,5 @@
 package Test;
 
-import Main.Language.Evaluator.Evaluator;
 import Main.Language.Reader.Reader;
 import Main.Language.Types.*;
 import org.junit.Test;
@@ -13,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 public class ReaderTest {
 
     @Test
-    public void testList() throws ErrorType {
+    public void testList() throws LanguageError {
         String code = "(1 2 3)";
         Reader reader = new Reader(code);
         ListType ast = reader.createAst();
@@ -23,11 +22,11 @@ public class ReaderTest {
         l.add(new NumberType(2));
         l.add(new NumberType(3));
 
-        assertEquals(new ListType(l).toString(), ast.get(0).toString());
+        assertEquals(new ListType(l), ast.get(0));
     }
 
     @Test
-    public void testNestedList() throws ErrorType {
+    public void testNestedList() throws LanguageError {
         String code = "(1 2 (1 2))";
         Reader reader = new Reader(code);
         ListType ast = reader.createAst();
@@ -42,23 +41,23 @@ public class ReaderTest {
                 )
         ));
 
-        assertEquals(new ListType(l).toString(), ast.get(0).toString());
+        assertEquals(new ListType(l), ast.get(0));
     }
 
 
     @Test
-    public void testEmptyCode() throws ErrorType {
+    public void testEmptyCode() throws LanguageError {
         String code = "";
         Reader reader = new Reader(code);
         ListType ast = reader.createAst();
 
         List<Type> l = new ArrayList<>();
 
-        assertEquals("[]", ast.toString());
+        assertEquals(new ListType(new ArrayList<>()), ast);
     }
 
     @Test
-    public void testAdd() throws ErrorType {
+    public void testAdd() throws LanguageError {
         String code = "(+ 2 3)";
         Reader reader = new Reader(code);
         ListType ast = reader.createAst();
@@ -68,11 +67,11 @@ public class ReaderTest {
         l.add(new NumberType(2));
         l.add(new NumberType(3));
 
-        assertEquals(new ListType(l).toString(), ast.get(0).toString());
+        assertEquals(new ListType(l), ast.get(0));
     }
 
     @Test
-    public void testFunctionDeclaration() throws ErrorType {
+    public void testFunctionDeclaration() throws LanguageError {
         String code = "(fn a (b) (+ b 1))";
         Reader reader = new Reader(code);
         ListType ast = reader.createAst();
@@ -87,11 +86,11 @@ public class ReaderTest {
                 new NumberType(1)
         )));
 
-        assertEquals( new ListType(l).toString(), ast.get(0).toString());
+        assertEquals( new ListType(l), ast.get(0));
     }
 
     @Test
-    public void testFunctionDeclarationMultipleParams() throws ErrorType {
+    public void testFunctionDeclarationMultipleParams() throws LanguageError {
         String code = "(fn a (b c) (+ b c 1))";
         Reader reader = new Reader(code);
         ListType ast = reader.createAst();
@@ -110,11 +109,11 @@ public class ReaderTest {
                 new NumberType(1)
         )));
 
-        assertEquals( new ListType(l).toString(), ast.get(0).toString());
+        assertEquals( new ListType(l), ast.get(0));
     }
 
     @Test
-    public void testFunctionWithArgs() throws ErrorType {
+    public void testFunctionWithArgs() throws LanguageError {
         String code = "(fn a (b) (+ b 1)) 1";
         Reader reader = new Reader(code);
         ListType ast = reader.createAst();
@@ -133,11 +132,11 @@ public class ReaderTest {
         lt.add(new ListType(l));
         lt.add(new NumberType(1));
 
-        assertEquals( new ListType(lt).toString(), ast.toString());
+        assertEquals( new ListType(lt), ast);
     }
 
     @Test
-    public void testDo() throws ErrorType {
+    public void testDo() throws LanguageError {
         String code = "do a 100 (+ a 1)";
         Reader reader = new Reader(code);
         ListType ast = reader.createAst();
@@ -152,16 +151,16 @@ public class ReaderTest {
                 new NumberType(1)
         )));
 
-        assertEquals(new ListType(l).toString(), ast.toString());
+        assertEquals(new ListType(l), ast);
     }
 
-    @Test(expected = ErrorType.class)
-    public void testUnclosedParens() throws ErrorType {
+    @Test(expected = LanguageError.class)
+    public void testUnclosedParens() throws LanguageError {
         new Reader("(a").createAst();
     }
 
-    @Test(expected = ErrorType.class)
-    public void testExtraClosedParens() throws ErrorType {
+    @Test(expected = LanguageError.class)
+    public void testExtraClosedParens() throws LanguageError {
         new Reader("(a))").createAst();
     }
 }

@@ -1,7 +1,9 @@
 package Main;
 
+import Main.Language.Environment;
 import Main.Language.Language;
-import Main.Language.Types.ErrorType;
+import Main.Language.NameSpace;
+import Main.Language.Types.LanguageError;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +15,6 @@ public class TextEditor {
     private JTextArea codeArea = new JTextArea(20, 50);
     private JTextArea outputArea = new JTextArea(10, 50);
     private JFrame frame = new JFrame("Text Editor");
-
 
     public void createUI() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,7 +50,6 @@ public class TextEditor {
         panel.add(new JScrollPane(outputArea), BorderLayout.SOUTH);
 
         frame.add(panel);
-//        frame.add(new JScrollPane(outputArea));
         frame.pack();
         frame.setVisible(true);
     }
@@ -97,22 +97,21 @@ public class TextEditor {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            outputArea.setText("");
+            NameSpace ns = new NameSpace(true, outputArea);
+            Environment env = ns.getEnv();
+            Language.setEnv(env);
+
             String code = codeArea.getText();
 
             outputArea.append("Running\n\n");
 
             try {
                 Language.run(code);
-            } catch (ErrorType ex) {
+            } catch (LanguageError ex) {
                 outputArea.append(ex + "\n");
             }
             outputArea.append("\nComplete\n");
-
-//            outputArea.append(output + "\n");
         }
-    }
-
-    public JTextArea getOutputArea() {
-        return outputArea;
     }
 }
